@@ -31,7 +31,7 @@ NAO deve parecer anuncio imobiliario comum. E uma apresentacao curada.
 |-------|-----|-----|
 | --green-primary | #05AB41 | Botoes CTA WhatsApp, icones ativos |
 | --green-dark | #019C39 | Hover de botoes |
-| --blue-dark | #053087 | Titulos de secao, header |
+| --blue-dark | #053087 | Header, elementos de destaque (NAO titulos) |
 | --blue-deeper | #012877 | Hover titulos |
 | --yellow-accent | #FDD216 | Badges destaque, icones features |
 | --white | #FFFFFF | Background principal |
@@ -47,7 +47,7 @@ NAO deve parecer anuncio imobiliario comum. E uma apresentacao curada.
 | Elemento | Font | Weight | Size (mobile) | Size (desktop) |
 |----------|------|--------|---------------|----------------|
 | Hero headline | Inter ou Playfair Display | 700 | 28px | 48px |
-| Secao titulo | Inter | 600 | 22px | 36px |
+| Secao titulo | Inter | 600 (color: --black #1A1A1A) | 22px | 36px |
 | Corpo | Inter | 400 | 16px | 18px |
 | Label/apoio | Inter | 400 | 13px | 14px |
 | CTA botao | Inter | 600 | 16px | 18px |
