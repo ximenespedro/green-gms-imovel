@@ -210,6 +210,7 @@ footer .brand{font-weight:600;color:var(--green)}
 .map-pin-poi{background:var(--blue);color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-shadow:0 2px 8px rgba(5,48,135,.3);border:2px solid white}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
@@ -547,6 +548,11 @@ footer .brand{font-weight:600;color:var(--green)}
 
 <script>
 (function(){
+  // Smooth scroll (Lenis)
+  const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
   // Intersection Observer for fade animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
