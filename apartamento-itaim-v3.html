@@ -42,14 +42,14 @@ section.short{min-height:auto;padding:48px 0}
 .hero3{height:100vh;height:100dvh;color:var(--white);position:relative;display:flex;align-items:flex-end;overflow:hidden}
 .hero3-bg{position:absolute;inset:0;background:url('https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/sala-living.jpg') center/cover no-repeat;animation:heroZoom 14s ease-out forwards}
 .hero3-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.55) 60%,rgba(0,0,0,.75) 100%)}
-.hero3-inner{position:relative;z-index:2;width:100%;max-width:1320px;margin:0 auto;padding:40px 24px 100px;display:flex;flex-direction:column;gap:32px;animation:heroFade 1.5s ease .3s both}
-@media(min-width:1024px){.hero3-inner{flex-direction:row;align-items:flex-end;justify-content:space-between;padding:60px 48px 140px;gap:40px}}
+.hero3-inner{position:relative;z-index:2;width:100%;max-width:1320px;margin:0 auto;padding:40px 24px 80px;display:flex;flex-direction:column;gap:32px;animation:heroFade 1.5s ease .3s both}
+@media(min-width:1024px){.hero3-inner{flex-direction:row;align-items:flex-end;justify-content:space-between;padding:60px 48px 100px;gap:40px}}
 .hero3-sub{font-size:clamp(15px,2vw,18px);font-weight:300;color:rgba(255,255,255,.75);max-width:500px;line-height:1.5}
 
 /* Left content */
 .hero3-left{display:flex;flex-direction:column;gap:20px;max-width:620px}
-.hero3-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
-.hero3-tag svg{width:14px;height:14px;fill:var(--green)}
+.hero3-tag{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.hero3-tag svg{width:18px;height:18px;fill:var(--green)}
 .hero3 h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5.5vw,56px);font-weight:700;line-height:1.1;letter-spacing:-.02em}
 .hero3-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:50px;background:rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);color:var(--white);text-decoration:none;font-size:14px;font-weight:500;transition:all .3s;width:fit-content;margin-top:4px}
 .hero3-cta:hover{background:var(--green);border-color:var(--green);transform:translateY(-2px);box-shadow:0 8px 24px rgba(5,171,65,.3)}
@@ -67,14 +67,19 @@ section.short{min-height:auto;padding:48px 0}
 .hero3-card-title .arrow{width:24px;height:24px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
 .hero3-card-sub{font-size:12px;color:rgba(255,255,255,.6);line-height:1.4}
 
-/* Bottom bar info */
-.hero3-bottom{position:absolute;bottom:0;left:0;right:0;z-index:3;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.08)}
-.hero3-bottom-inner{max-width:1320px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
-@media(min-width:1024px){.hero3-bottom-inner{padding:16px 48px;justify-content:flex-start;gap:40px}}
-.hero3-pill{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:rgba(255,255,255,.85)}
-.hero3-pill strong{font-weight:600;color:var(--white)}
-.hero3-pill-divider{width:1px;height:20px;background:rgba(255,255,255,.2);display:none}
-@media(min-width:768px){.hero3-pill-divider{display:block}}
+/* Scroll hint */
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:3;animation:bounce 2s infinite}
+.scroll-hint span{display:block;width:24px;height:24px;border-right:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);transform:rotate(45deg)}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;cursor:zoom-out;animation:lbFade .3s ease}
+.lightbox.active{display:flex}
+.lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:8px;animation:lbScale .3s ease}
+@keyframes lbFade{from{opacity:0}to{opacity:1}}
+@keyframes lbScale{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.lightbox-close{position:absolute;top:20px;right:24px;color:#fff;font-size:32px;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);border-radius:50%;border:none;transition:background .2s}
+.lightbox-close:hover{background:rgba(255,255,255,.2)}
 
 /* ===== SECTION TITLES ===== */
 .section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,40px);font-weight:700;color:var(--black);line-height:1.2;margin-bottom:16px}
@@ -220,33 +225,24 @@ footer .brand{font-weight:600;color:var(--green)}
 
     <!-- Right — floating cards -->
     <div class="hero3-cards">
-      <div class="hero3-card" style="--i:0">
-        <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/suite-quarto.jpg" alt="Suíte principal" loading="lazy">
+      <div class="hero3-card" style="--i:0;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/sala-panoramica.jpg" alt="Sala ampla panorâmica" loading="lazy">
         <div class="hero3-card-body">
-          <p class="hero3-card-title">107 m² <span class="arrow">↗</span></p>
+          <p class="hero3-card-title">107 m² · 3 quartos</p>
           <p class="hero3-card-sub">Planta generosa e bem distribuída</p>
         </div>
       </div>
-      <div class="hero3-card" style="--i:1">
+      <div class="hero3-card" style="--i:1;cursor:pointer" onclick="openLightbox(this.querySelector('img').src)">
         <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-geral.jpg" alt="Cozinha moderna" loading="lazy">
         <div class="hero3-card-body">
-          <p class="hero3-card-title">Faria Lima <span class="arrow">↗</span></p>
-          <p class="hero3-card-sub">A 2 min a pé da Infinity Tower</p>
+          <p class="hero3-card-title">1 vaga fixa</p>
+          <p class="hero3-card-sub">Ao lado do elevador, prédio bem mantido</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bottom info bar -->
-  <div class="hero3-bottom">
-    <div class="hero3-bottom-inner">
-      <span class="hero3-pill"><strong>3</strong> quartos</span>
-      <span class="hero3-pill-divider"></span>
-      <span class="hero3-pill"><strong>1</strong> vaga fixa</span>
-      <span class="hero3-pill-divider"></span>
-      <span class="hero3-pill"><strong>107</strong> m²</span>
-    </div>
-  </div>
+  <div class="scroll-hint"><span></span></div>
 </section>
 
 <div class="section-divider"></div>
@@ -254,9 +250,10 @@ footer .brand{font-weight:600;color:var(--green)}
 <!-- S3: Sala -->
 <section class="room layout-split" id="sala">
   <div class="room-gallery" data-carousel>
-    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/sala-janela.jpg" alt="Sala com janelas amplas e ar condicionado" class="active">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/sala-living.jpg" alt="Sala ampla com piso de madeira e quadro" class="active">
     <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/sala-arte-pb.jpg" alt="Sala com obra de arte e iluminação direcionada" loading="lazy">
-    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/sala-arte-colorida.jpg" alt="Sala com estante embutida e obra de arte" loading="lazy">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/sala-arte-colorida.jpg" alt="Sala vista lateral com quadro e piso de madeira" loading="lazy">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/sala-panoramica.jpg" alt="Sala panorâmica com estante embutida e quadro colorido" loading="lazy">
     <button class="carousel-arrow prev" aria-label="Foto anterior">&#8249;</button>
     <button class="carousel-arrow next" aria-label="Próxima foto">&#8250;</button>
     <div class="carousel-controls"></div>
@@ -272,8 +269,12 @@ footer .brand{font-weight:600;color:var(--green)}
 
 <!-- S4: Home Office -->
 <section class="room layout-split" id="office" style="flex-direction:row-reverse">
-  <div class="room-gallery">
-    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/escritorio.jpg" alt="Home office com duas estações de trabalho e armários embutidos" class="active">
+  <div class="room-gallery" data-carousel>
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/home-office-b.jpg" alt="Home office com estante embutida e espaço para trabalho" class="active">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/home-office-a.jpg" alt="Home office reversível com armários e ar condicionado" loading="lazy">
+    <button class="carousel-arrow prev" aria-label="Foto anterior">&#8249;</button>
+    <button class="carousel-arrow next" aria-label="Próxima foto">&#8250;</button>
+    <div class="carousel-controls"></div>
   </div>
   <div class="room-info fade-up">
     <p class="section-label">Versatilidade</p>
@@ -303,7 +304,8 @@ footer .brand{font-weight:600;color:var(--green)}
 <!-- S6: Suíte -->
 <section class="room layout-split" id="suite">
   <div class="room-gallery" data-carousel>
-    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/suite-quarto.jpg" alt="Suíte principal espaçosa com armários" class="active">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/suite-a-listrado.jpg" alt="Suíte principal com armários embutidos e papel de parede listrado" class="active">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/suite-quarto.jpg" alt="Suíte com ar condicionado e armários" loading="lazy">
     <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/suite-closet.jpg" alt="Closet com sapateira e prateleiras organizadoras" loading="lazy">
     <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/banheiro-suite.jpg" alt="Banheiro da suíte com box de vidro e acabamento moderno" loading="lazy">
     <button class="carousel-arrow prev" aria-label="Foto anterior">&#8249;</button>
@@ -322,7 +324,7 @@ footer .brand{font-weight:600;color:var(--green)}
 <!-- S7: Segundo Quarto -->
 <section class="room layout-split" id="quarto2" style="flex-direction:row-reverse">
   <div class="room-gallery" data-carousel>
-    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/quarto2.jpg" alt="Segundo quarto com armários embutidos" class="active">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/quarto-2-a.jpg" alt="Segundo quarto com armários embutidos" class="active">
     <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/quarto2-b.jpg" alt="Segundo quarto vista alternativa" loading="lazy">
     <button class="carousel-arrow prev" aria-label="Foto anterior">&#8249;</button>
     <button class="carousel-arrow next" aria-label="Próxima foto">&#8250;</button>
@@ -364,7 +366,7 @@ footer .brand{font-weight:600;color:var(--green)}
     <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-geral.jpg" alt="Cozinha planejada com azulejos portugueses e mesa de refeições" class="active">
     <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-bancada.jpg" alt="Bancada da cozinha com cooktop e azulejos decorativos" loading="lazy">
     <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-copa.jpg" alt="Copa com bancada em madeira e adega" loading="lazy">
-    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-completa.jpg" alt="Vista completa da cozinha com área de apoio" loading="lazy">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-porta.jpg" alt="Vista completa da cozinha com área de apoio" loading="lazy">
     <button class="carousel-arrow prev" aria-label="Foto anterior">&#8249;</button>
     <button class="carousel-arrow next" aria-label="Próxima foto">&#8250;</button>
     <div class="carousel-controls"></div>
@@ -688,7 +690,24 @@ footer .brand{font-weight:600;color:var(--green)}
     }, { threshold: 0.1 });
     mapObserver.observe(mapEl);
   }
+  // Lightbox
+  window.openLightbox = function(src) {
+    const lb = document.getElementById('lightbox');
+    lb.querySelector('img').src = src;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeLightbox = function() {
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+  };
 })();
 </script>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img src="" alt="Foto ampliada">
+</div>
 </body>
 </html>
