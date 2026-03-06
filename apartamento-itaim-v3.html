@@ -131,6 +131,16 @@ section.short{min-height:auto;padding:48px 0}
 .location-item .name{font-weight:500;color:var(--black);text-align:left;flex:1}
 .location-item .dist{font-weight:600;color:var(--green);white-space:nowrap;margin-left:16px;font-size:14px}
 
+/* Location categories */
+.loc-categories{display:grid;grid-template-columns:1fr;gap:16px;width:100%;max-width:900px;margin-top:40px;text-align:left}
+@media(min-width:768px){.loc-categories{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.loc-categories{grid-template-columns:repeat(4,1fr)}}
+.loc-cat{background:var(--white);border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.loc-cat-title{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.loc-cat-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.loc-cat-list li{font-size:14px;color:var(--black);font-weight:400;line-height:1.5}
+.loc-cat-dist{font-size:12px;color:var(--gray-medium);margin-top:10px;font-style:italic}
+
 /* ===== LIFESTYLE (S12) ===== */
 .lifestyle-scroll{display:flex;gap:16px;overflow-x:auto;padding:32px 24px 32px 24px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .lifestyle-scroll::-webkit-scrollbar{display:none}
@@ -154,7 +164,7 @@ section.short{min-height:auto;padding:48px 0}
 .numbers-section{min-height:auto;padding:64px 24px;text-align:center;background:var(--white)}
 .numbers-section .section-title{margin-bottom:32px}
 .numbers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:700px;margin:0 auto}
-@media(min-width:768px){.numbers-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:768px){.numbers-grid{grid-template-columns:repeat(3,1fr)}}
 .number-card{display:flex;flex-direction:column;align-items:center;gap:4px}
 .number-value{font-size:clamp(28px,4vw,44px);font-weight:700;color:var(--green);line-height:1}
 .number-label{font-size:13px;color:var(--gray-medium);font-weight:400}
@@ -203,7 +213,9 @@ footer .brand{font-weight:600;color:var(--green)}
 .leaflet-popup-content strong{display:block;font-size:14px;color:#1A1A1A;margin-bottom:2px}
 .leaflet-popup-content .dist-info{color:#05AB41;font-weight:600;font-size:13px}
 .map-pin-home{background:var(--green);color:white;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 12px rgba(5,171,65,.4);border:3px solid white}
-.map-pin-poi{background:var(--blue);color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-shadow:0 2px 8px rgba(5,48,135,.3);border:2px solid white}
+.map-pin-poi{width:14px;height:14px;background:var(--blue);border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(5,48,135,.4);border:2px solid white}
+.map-label-tooltip{background:white!important;border:1px solid #ddd!important;border-radius:6px!important;padding:3px 8px!important;font-family:'Inter',sans-serif!important;font-size:11px!important;font-weight:600!important;color:var(--blue)!important;box-shadow:0 2px 6px rgba(0,0,0,.1)!important;white-space:nowrap!important}
+.map-label-tooltip::before{border-right-color:white!important}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -262,6 +274,7 @@ footer .brand{font-weight:600;color:var(--green)}
     <p class="section-label">Ambientes</p>
     <h2 class="section-title">Sala ampla e iluminada</h2>
     <p class="section-text">Área de convivência com janelas amplas, piso de madeira em excelente estado e ar condicionado instalado. Layout ideal para estar, jantar e receber com conforto.</p>
+    <p style="font-size:12px;color:var(--gray-medium);margin-top:12px;font-style:italic">* A obra de arte é negociada à parte.</p>
   </div>
 </section>
 
@@ -364,9 +377,9 @@ footer .brand{font-weight:600;color:var(--green)}
 <section class="room layout-split" id="cozinha">
   <div class="room-gallery" data-carousel>
     <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-geral.jpg" alt="Cozinha planejada com azulejos portugueses e mesa de refeições" class="active">
-    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-bancada.jpg" alt="Bancada da cozinha com cooktop e azulejos decorativos" loading="lazy">
-    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-copa.jpg" alt="Copa com bancada em madeira e adega" loading="lazy">
-    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-porta.jpg" alt="Vista completa da cozinha com área de apoio" loading="lazy">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-copa.jpg" alt="Cozinha com vista para área de serviço e banheiro de empregada ao fundo" loading="lazy">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-bancada.jpg" alt="Copa com bancada em madeira, adega e azulejos" loading="lazy">
+    <img src="https://raw.githubusercontent.com/ximenespedro/green-gms-imovel/master/fotos/cozinha-porta.jpg" alt="Bancada da cozinha com cooktop e azulejos portugueses" loading="lazy">
     <button class="carousel-arrow prev" aria-label="Foto anterior">&#8249;</button>
     <button class="carousel-arrow next" aria-label="Próxima foto">&#8250;</button>
     <div class="carousel-controls"></div>
@@ -374,7 +387,7 @@ footer .brand{font-weight:600;color:var(--green)}
   <div class="room-info fade-up">
     <p class="section-label">Gastronomia</p>
     <h2 class="section-title">Cozinha moderna e funcional</h2>
-    <p class="section-text">Marcenaria planejada, excelente circulação e bancada de apoio. Os azulejos em estilo português trazem identidade e personalidade ao ambiente.</p>
+    <p class="section-text">Marcenaria planejada, excelente circulação e bancada de apoio. Os azulejos em estilo português trazem identidade e personalidade ao ambiente. O apartamento conta ainda com área de serviço e banheiro de empregada — visíveis ao fundo na segunda foto do carrossel.</p>
   </div>
 </section>
 
@@ -388,20 +401,49 @@ footer .brand{font-weight:600;color:var(--green)}
   <div class="map-wrapper fade-up">
     <div id="map"></div>
   </div>
-  <ul class="location-list" style="margin-top:48px">
-    <li class="location-item stagger">
-      <span class="name">Infinity Tower</span>
-      <span class="dist">160 m · 2 min</span>
-    </li>
-    <li class="location-item stagger">
-      <span class="name">Google, BTG, Morgan Stanley e J.P. Morgan</span>
-      <span class="dist">550 m · 7 min</span>
-    </li>
-    <li class="location-item stagger">
-      <span class="name">Bank of America Merrill Lynch e Itaú BBA</span>
-      <span class="dist">650 m · 8 min</span>
-    </li>
-  </ul>
+  <div class="loc-categories fade-up">
+    <div class="loc-cat stagger">
+      <p class="loc-cat-title">Bancos & Asset Management</p>
+      <ul class="loc-cat-list">
+        <li>BTG Pactual</li>
+        <li>Morgan Stanley</li>
+        <li>J.P. Morgan</li>
+        <li>Bank of America Merrill Lynch</li>
+        <li>Itaú BBA</li>
+      </ul>
+    </div>
+    <div class="loc-cat stagger">
+      <p class="loc-cat-title">Tech & Corporativo</p>
+      <ul class="loc-cat-list">
+        <li>Google</li>
+        <li>Infinity Tower</li>
+      </ul>
+      <p class="loc-cat-dist">160 a 550 m · 2 a 7 min a pé</p>
+    </div>
+    <div class="loc-cat stagger">
+      <p class="loc-cat-title">Escritórios de Advocacia</p>
+      <ul class="loc-cat-list">
+        <li>Lefosse</li>
+        <li>TozziniFreire</li>
+        <li>Lobo de Rizzo</li>
+        <li>Machado Meyer</li>
+        <li>Araújo e Policastro</li>
+        <li>Mundie</li>
+        <li>Veirano</li>
+        <li>PLKC</li>
+      </ul>
+      <p class="loc-cat-dist">300 a 800 m</p>
+    </div>
+    <div class="loc-cat stagger">
+      <p class="loc-cat-title">Bancas Internacionais</p>
+      <ul class="loc-cat-list">
+        <li>White & Case</li>
+        <li>Linklaters</li>
+        <li>Hogan Lovells</li>
+        <li>A&O Shearman</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- S12: Lifestyle -->
@@ -450,7 +492,7 @@ footer .brand{font-weight:600;color:var(--green)}
         <p class="edu-closing fade-up">Após a graduação, muitos profissionais passam a trabalhar justamente nas empresas da Faria Lima, a poucos minutos do imóvel.</p>
       </div>
       <div class="edu-split-right fade-up">
-        <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600&q=80" alt="Família em momento de convivência" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1659783553747-b0a90e39e39d?w=600&q=80" alt="Vista da região do Itaim Bibi, São Paulo" loading="lazy">
       </div>
     </div>
   </div>
@@ -475,10 +517,6 @@ footer .brand{font-weight:600;color:var(--green)}
       <div class="number-card">
         <span class="number-value" data-count="1">0</span>
         <span class="number-label">vaga fixa</span>
-      </div>
-      <div class="number-card">
-        <span class="number-value" data-count="10">0</span>
-        <span class="number-label">portas de armário</span>
       </div>
     </div>
     <div class="values-row">
@@ -516,7 +554,7 @@ footer .brand{font-weight:600;color:var(--green)}
       Luciana · Corretora SP
     </a>
   </div>
-  <p class="cta-support fade-up">Visitas com agendamento.</p>
+  <p class="cta-support fade-up">Visitas com agendamento prévio diretamente com a corretora Luciana.</p>
 </section>
 
 <footer>
@@ -642,7 +680,7 @@ footer .brand{font-weight:600;color:var(--green)}
   // Map initialization
   const mapEl = document.getElementById('map');
   if (mapEl) {
-    const apt = [-23.5843, -46.6762];
+    const apt = [-23.58640, -46.67835];
     const map = L.map('map', {
       center: apt,
       zoom: 15,
@@ -660,24 +698,27 @@ footer .brand{font-weight:600;color:var(--green)}
       return L.divIcon({ html: html, className: '', iconSize: [size, size], iconAnchor: [size/2, size/2] });
     }
 
-    // Apartment marker
+    // Apartment marker — Rua Iaiá 112, Itaim Bibi
     L.marker(apt, {
       icon: icon('<div class="map-pin-home">&#8962;</div>', 36)
     }).addTo(map).bindPopup('<strong>Rua Iaiá 112</strong>Apartamento 107 m²');
 
-    // POIs
+    // POIs — coordenadas geocodificadas pelos endereços reais (Nominatim OSM)
     var pois = [
-      { pos: [-23.5858, -46.6780], name: 'Infinity Tower', dist: '160 m · 2 min', label: '1' },
-      { pos: [-23.5813, -46.6813], name: 'Google / BTG / Morgan Stanley / J.P. Morgan', dist: '550 m · 7 min', label: '2' },
-      { pos: [-23.5798, -46.6832], name: 'Bank of America / Itaú BBA', dist: '650 m · 8 min', label: '3' },
-      { pos: [-23.5828, -46.6738], name: 'Lefosse / TozziniFreire', dist: '~400 m · 5 min', label: '4' },
-      { pos: [-23.5808, -46.6793], name: 'Machado Meyer / Veirano', dist: '~500 m · 6 min', label: '5' }
+      { pos: [-23.58744, -46.67948], name: 'Infinity Tower', dist: '160 m · 2 min', label: 'Infinity Tower', tipDir: 'right' },
+      { pos: [-23.58645, -46.68196], name: 'Google / BTG / Morgan Stanley / J.P. Morgan', dist: '550 m · 7 min', label: 'Google / BTG', tipDir: 'right' },
+      { pos: [-23.58740, -46.68242], name: 'Itaú BBA', dist: '650 m · 8 min', label: 'Itaú BBA', tipDir: 'left' },
+      { pos: [-23.58739, -46.68203], name: 'Lefosse / TozziniFreire', dist: '~400 m · 5 min', label: 'Lefosse', tipDir: 'right' },
+      { pos: [-23.58435, -46.68350], name: 'Machado Meyer / Veirano', dist: '~500 m · 6 min', label: 'Machado Meyer', tipDir: 'right' }
     ];
 
+    var pinIcon = L.divIcon({ html: '<div class="map-pin-poi"></div>', className: '', iconSize: [18, 18], iconAnchor: [9, 18] });
+
     pois.forEach(function(p) {
-      L.marker(p.pos, {
-        icon: icon('<div class="map-pin-poi">' + p.label + '</div>', 28)
-      }).addTo(map).bindPopup('<strong>' + p.name + '</strong><span class="dist-info">' + p.dist + '</span>');
+      L.marker(p.pos, { icon: pinIcon })
+        .addTo(map)
+        .bindTooltip(p.label, { permanent: true, direction: p.tipDir, offset: [p.tipDir==='left'?-8:8, -8], className: 'map-label-tooltip' })
+        .bindPopup('<strong>' + p.name + '</strong><span class="dist-info">' + p.dist + '</span>');
     });
 
     // Fit bounds
